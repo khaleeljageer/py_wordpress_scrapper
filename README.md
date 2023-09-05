@@ -1,0 +1,2 @@
+# WordPress Post Scraper and Database Storage
+This Python script is designed to scrape posts from a WordPress website and store them in a SQLite database. It utilizes the WordPress REST API to retrieve posts in batches of 100. The script handles pagination to ensure that all available posts are scraped and stored in the database.
