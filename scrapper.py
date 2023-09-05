@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import sqlite3
 
-base_url = 'https://public-api.wordpress.com/wp/v2/sites/marxistreader.app/posts'
+base_url = 'https://www.kaniyam.com/wp-json/wp/v2/posts'
+
 
 def scrap_page():
     # Initialize variables for pagination
@@ -14,7 +15,7 @@ def scrap_page():
     # Create a cursor object to interact with the database
     cursor = conn.cursor()
     # Create a table
-    cursor.execute('''CREATE TABLE IF NOT EXISTS marxist
+    cursor.execute('''CREATE TABLE IF NOT EXISTS kaniyam
                       (id INTEGER PRIMARY KEY AUTOINCREMENT,
                        content TEXT NOT NULL)''')
     print('Database created...')
@@ -39,7 +40,7 @@ def scrap_page():
             post_title = BeautifulSoup(post['title']['rendered'], 'html.parser').get_text(strip=True)
             post_content = BeautifulSoup(post['content']['rendered'], 'html.parser').get_text(strip=True)
             # Insert data into the database
-            cursor.execute('INSERT INTO marxist (content) VALUES (?)', (post_content,))
+            cursor.execute('INSERT INTO kaniyam (content) VALUES (?)', (post_content,))
             print(f'Inserted post with ID {post_title}')
 
         # Increment the page counter for the next request
